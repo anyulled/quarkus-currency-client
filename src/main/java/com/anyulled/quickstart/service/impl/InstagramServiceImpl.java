@@ -48,6 +48,15 @@ public class InstagramServiceImpl implements InstagramService {
     }
 
     @Override
+    public String obtainAccessToken(String code) throws BusinessException {
+        log.info("Service :: getting access token for code {} ::", code);
+        return Optional
+                .ofNullable(client.getAccessToken(clientId, clientSecret, grantType, redirectURI, code))
+                .map(AccessTokenResponse::getAccessToken)
+                .orElseThrow(BusinessException::new);
+    }
+
+    @Override
     public UserResponse getUserInfo() throws BusinessException {
         log.info("calling instagram API for {} information with access token {}", accessToken.getUser().getUsername(), accessToken.getAccessToken());
         return Optional

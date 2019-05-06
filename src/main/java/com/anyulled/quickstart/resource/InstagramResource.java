@@ -7,7 +7,9 @@ import lombok.extern.slf4j.Slf4j;
 import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 @Slf4j
@@ -19,6 +21,7 @@ public class InstagramResource {
 
     @GET
     @Path("/response")
+    @Produces(MediaType.APPLICATION_JSON)
     public Response getResponseCode(@QueryParam("code") String code) throws BusinessException {
         if (code != null) {
             log.info("saving auth code {}", code);
@@ -36,5 +39,12 @@ public class InstagramResource {
                     .entity("Code not present")
                     .build();
         }
+    }
+
+    @GET
+    @Path("/getAccessToken")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getAccessToken(@QueryParam("code") String code) throws BusinessException {
+        return Response.ok(service.obtainAccessToken(code)).build();
     }
 }

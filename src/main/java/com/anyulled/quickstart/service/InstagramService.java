@@ -10,6 +10,8 @@ public interface InstagramService {
 
     String obtainAccessToken() throws BusinessException;
 
+    String obtainAccessToken(String code) throws BusinessException;
+
     UserResponse getUserInfo() throws BusinessException;
 
     MediaResponse getMediaInfo() throws BusinessException;

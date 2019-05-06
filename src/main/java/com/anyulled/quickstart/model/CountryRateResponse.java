@@ -1,7 +1,5 @@
 package com.anyulled.quickstart.model;
 
-import com.anyulled.quickstart.model.Country;
-import com.anyulled.quickstart.model.Rate;
 import lombok.Builder;
 import lombok.Data;
 

@@ -12,7 +12,7 @@ public class ExceptionHandler implements ExceptionMapper<BusinessException> {
 
     @Override
     public Response toResponse(BusinessException exception) {
-        log.error("= Uh Oh, something happened: {} =", exception.getMessage());
+        log.error("= Uh Oh, something happened =", exception);
         return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
                 .entity(exception.getLocalizedMessage())
                 .build();
